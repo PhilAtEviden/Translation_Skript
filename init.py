@@ -1,10 +1,27 @@
 import sys
 import pandas as pd
 
+import config
 import initUt
 
 def check_directories():
     print("Startup.....")
+
+    if not initUt.check_if_main_directory_exists():
+        print("The main directory does not exist")
+        print("Do you want to create the main directory now at:" + config.get_path())
+
+        if input("[y/n]") == "y":
+            initUt.create_main_directory()
+            print("Done!")
+            print()
+        else:
+            sys.exit()
+    else:
+        print("Main directory: \t\t\t\tOk!")
+
+    config.set_path()
+
     if not initUt.check_if_CSV_directory_exists():
         print("Missing Directory: /CSV")
         print("Do you want to create this Directory?")
@@ -80,6 +97,7 @@ def check_directories():
                 sys.exit()
     else:
         print("Master files:\t\t\t\t\tOK!")
+    print()
 
 
 

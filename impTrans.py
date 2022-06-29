@@ -1,6 +1,9 @@
 import os
 
 import pandas as pd
+
+import config
+
 """
 Takes finished translations from /CSV/imp in form of excel files and implements them in to your master CSV.
 """
@@ -17,7 +20,7 @@ def import_trans():
         tab = tab.set_index('key')
         trans = pd.concat([trans, tab.reindex(trans.index)[file[:2]]], axis=1)
 
-    trans = trans.reindex(columns=['en', 'ch'])
+    trans = trans.reindex(columns=['en'] + config.get_languages())
 
     master = pd.read_csv('CSV/master.csv', encoding='utf-8', index_col='key')
 

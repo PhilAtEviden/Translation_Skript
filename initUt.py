@@ -6,6 +6,13 @@ import pandas as pd
 import config
 
 
+def check_if_main_directory_exists():
+    if exists(config.get_path()):
+        return True
+    else:
+        return False
+
+
 def check_if_CSV_directory_exists():
     if exists(join(config.get_path(), "CSV")):
         return True
@@ -35,7 +42,8 @@ def check_if_master_csv_exists():
 
 
 def check_if_application_exists():
-    if len(os.listdir(join(config.get_path(), "JSON/exp"))) > 0 and len(os.listdir(join(config.get_path(), "JSON/imp"))) > 0:
+    if len(os.listdir(join(config.get_path(), "JSON/exp"))) > 0 and len(
+            os.listdir(join(config.get_path(), "JSON/imp"))) > 0:
         return True
     else:
         return False
@@ -46,7 +54,6 @@ def check_if_applications_match():
         return True
     else:
         return False
-
 
 
 def create_CSV_file():
@@ -63,10 +70,17 @@ def create_JSON_file():
     os.mkdir(join(path, "imp"))
 
 
+def create_main_directory():
+    os.mkdir(config.get_path())
+    create_CSV_file()
+    create_JSON_file()
+
+
 def add_application(application_name):
     path = join(config.get_path(), "JSON")
     os.mkdir(join(path, "exp", application_name))
     os.mkdir(join(path, "imp", application_name))
+
 
 def create_master_table():
     languages = ['key', 'en'] + config.get_languages()
