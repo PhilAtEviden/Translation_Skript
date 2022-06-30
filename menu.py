@@ -11,7 +11,7 @@ import mkTrans
 def main_menu():
     while True:
 
-        print("Please select an option:\n\n")
+        print("Please select an option:\n")
 
         print("- Translation lifecycle")
         print("1: import a base language JSON in to your master table")
@@ -42,5 +42,5 @@ def main_menu():
             print("Done!")
             print()
 
-        master = pd.read_csv('CSV/master.csv', encoding='utf-8', index_col='key')
-        master.to_excel('CSV/master.xlsx')
+        master = pd.read_csv('./CSV/master.csv', encoding='utf-8', index_col='key')
+        master.to_excel('./CSV/master.xlsx')

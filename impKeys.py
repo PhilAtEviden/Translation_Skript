@@ -6,6 +6,7 @@ import pandas as pd
 Takes all new keys in your base language and imports them to your master table.
 """
 def import_keys():
+    print(os.getcwd())
     keys = pd.DataFrame()
     for application in os.listdir('./JSON/exp'):
         for file in os.listdir(os.path.join('./JSON/exp', application)):

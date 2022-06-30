@@ -16,13 +16,13 @@ def import_trans():
     trans = trans.set_index('key')
 
     for file in os.listdir('./CSV/imp'):
-        tab = pd.read_excel('CSV/imp/'+ file)
+        tab = pd.read_excel('./CSV/imp/'+ file)
         tab = tab.set_index('key')
         trans = pd.concat([trans, tab.reindex(trans.index)[file[:2]]], axis=1)
 
     trans = trans.reindex(columns=['en'] + config.get_languages())
 
-    master = pd.read_csv('CSV/master.csv', encoding='utf-8', index_col='key')
+    master = pd.read_csv('./CSV/master.csv', encoding='utf-8', index_col='key')
 
     master = master.append(trans, ignore_index=False)
 
@@ -31,7 +31,7 @@ def import_trans():
     master = master.sort_values('key')
     master = master.set_index('key')
 
-    master.to_csv('CSV/master.csv')
+    master.to_csv('./CSV/master.csv')
 
     print("Merge review: Missing Translations")
     print(master.isnull().sum(axis=0))

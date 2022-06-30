@@ -10,4 +10,4 @@ def make_translations():
         tab = export[['en', col]]
         tab.columns = ['enRef', col]
 
-        tab.to_excel(('CSV/exp/' + col + '_trans.xlsx'), encoding="utf-8")
+        tab.to_excel(('./CSV/exp/' + col + '_trans.xlsx'), encoding="utf-8")

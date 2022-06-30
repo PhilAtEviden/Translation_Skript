@@ -10,4 +10,4 @@ def set_path():
 
 
 def get_languages():
-    return ["ch"]
+    return ["ch","de","pt"]

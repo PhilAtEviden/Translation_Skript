@@ -7,7 +7,7 @@ import ut
 exists a translation in the master table. """
 
 def make_json():
-    master = pd.read_csv('CSV/master.csv', encoding='utf-8', index_col='key')
+    master = pd.read_csv('./CSV/master.csv', encoding='utf-8', index_col='key')
 
     for application in os.listdir('./JSON/exp'):
         for file in os.listdir(os.path.join('./JSON/exp', application)):
