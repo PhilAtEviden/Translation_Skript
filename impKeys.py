@@ -2,24 +2,28 @@ import os
 import json
 import flatdict
 import pandas as pd
+
+import config
+
 """
 Takes all new keys in your base language and imports them to your master table.
 """
+
+
 def import_keys():
     print(os.getcwd())
     keys = pd.DataFrame()
     for application in os.listdir('./JSON/exp'):
-        for file in os.listdir(os.path.join('./JSON/exp', application)):
-
-            with open(os.path.join('./JSON/exp', application, file), 'r', encoding='UTF-8') as file:
+        for file_name in os.listdir(os.path.join('./JSON/exp', application)):
+            with open(os.path.join('./JSON/exp', application, file_name), 'r', encoding='UTF-8') as file:
                 file = json.load(file)
                 file = flatdict.FlatDict(file, delimiter='.')
 
                 file = pd.DataFrame(file.items())
-                file.columns = ['key', 'en']
+                file.columns = ['key', file_name.split('.')[0]]
                 file = file.set_index('key')
 
-                keys = pd.concat([keys,file])
+                keys = pd.concat([file, keys], axis=1)
 
     keys = keys.reset_index()
     keys = keys.drop_duplicates(subset='key', keep='last')
