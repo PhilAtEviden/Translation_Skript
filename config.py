@@ -2,7 +2,7 @@ import os
 
 
 def get_path():
-    return "C:/Users/a764963/OneDrive - Atos/Desktop/Test"
+    return "C:/Users/a764963/OneDrive - Eviden/Desktop/Translation Skript"
 
 
 def set_path():
@@ -10,4 +10,4 @@ def set_path():
 
 
 def get_languages():
-    return ["zh"]
+    return ["de","es","id","pt","th"]
