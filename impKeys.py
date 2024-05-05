@@ -9,7 +9,6 @@ import config
 Takes all new keys in your base language and imports them to your master table.
 """
 
-
 def import_keys():
     print(os.getcwd())
     keys = pd.DataFrame()
@@ -32,7 +31,8 @@ def import_keys():
 
     master = pd.read_csv('CSV/master.csv', encoding='utf-8', index_col='key')
 
-    master = master.append(keys, ignore_index=False)
+    master = pd.concat([master, keys], ignore_index=False)
+    #master = master.append(keys, ignore_index=False)
 
     master = master.reset_index()
     master = master.drop_duplicates(subset='key', keep='first')

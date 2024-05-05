@@ -24,7 +24,8 @@ def import_trans():
 
     master = pd.read_csv('./CSV/master.csv', encoding='utf-8', index_col='key')
 
-    master = master.append(trans, ignore_index=False)
+    master = pd.concat([master, trans], ignore_index=False)
+    #master = master.append(trans, ignore_index=False)
 
     master = master.reset_index()
     master = master.drop_duplicates(subset='key', keep='last')
